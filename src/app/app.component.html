@@ -1,0 +1,21 @@
+<div class="container">
+  <!-- Passing Date from Child to Parent-->
+  <app-cockpit
+    (blueprintCreated)="onBlueprintAdded($event)"
+    (serverCreated)="onServerAdded($event)"
+  ></app-cockpit>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+
+      <!-- Passing Data from Parent to Child-->
+      <app-server-element
+        *ngFor="let serverElement of serverElements"
+        [elementAlias]="serverElement">
+        <p #pText>this should be rendered</p>
+        <strong *ngIf="serverElement.type === 'server'">{{ serverElement.content }}</strong>
+        <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+      </app-server-element>
+    </div>
+  </div>
+</div>
